@@ -18,6 +18,7 @@ class element
 
 int main(int argc, char const *argv[])
 {
-    /* code */
+    // deklaracja zminnych
+    
     return 0;
 }

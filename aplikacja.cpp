@@ -19,6 +19,6 @@ class element
 int main(int argc, char const *argv[])
 {
     // deklaracja zminnych
-    
+    std::cout<<"Aplikacja plecak";
     return 0;
 }

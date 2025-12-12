@@ -63,12 +63,12 @@ int main(int argc, char const *argv[])
     float cena,waga;
     //wstawianie elementów do spakowania
         do{
-            std::cout<<("podaj nazwe:");
+            std::cout<<"-----------"<<std::endl<<"podaj nazwe:";
             std::cin>>nazwa;
             if(nazwa!="."){
-                std::cout<<("podaj cene:");
+                std::cout<<"podaj cene:";
                 std::cin>>cena;
-                std::cout<<("podaj wage:");
+                std::cout<<"podaj wage:";
                 std::cin>>waga;
                 naStole.push_back(element);
             };

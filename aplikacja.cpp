@@ -1,5 +1,4 @@
 // Aplikacja plecak 2025
-
 #include<iostream>
 #include<string>
 

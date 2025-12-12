@@ -70,6 +70,7 @@ int main(int argc, char const *argv[])
                 std::cin>>cena;
                 std::cout<<"podaj wage:";
                 std::cin>>waga;
+                element.setElement(nazwa, cena, waga);
                 naStole.push_back(element);
             };
         }while(nazwa!=".");

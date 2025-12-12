@@ -10,7 +10,7 @@ class Element
         float waga;
         float wagaZaKG;
     public:    
-    Element(std::string nazwa, float cena, float waga){
+    void setElement(std::string nazwa, float cena, float waga){
         this->nazwa=nazwa;
         this->waga=waga;
         this->cena=cena;
@@ -58,11 +58,24 @@ class Plecak{
 int main(int argc, char const *argv[])
 {
     std::vector <Element> naStole;
+    Element element;
+    std::string nazwa;
+    float cena,waga;
     //wstawianie elementów do spakowania
-
+        do{
+            std::cout<<("podaj nazwe:");
+            std::cin>>nazwa;
+            if(nazwa!="."){
+                std::cout<<("podaj cene:");
+                std::cin>>cena;
+                std::cout<<("podaj wage:");
+                std::cin>>waga;
+                naStole.push_back(element);
+            };
+        }while(nazwa!=".");
     //Sortowanie po wadze za 1 kg
 
     //Wkladanie do plecaka
-    
+
     return 0;
-}
+};

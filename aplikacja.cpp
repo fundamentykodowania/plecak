@@ -1,22 +1,22 @@
-// Aplikacja plecak 2025
 #include<iostream>
 #include<string>
 #include<vector>
 
 class Element
 {
-    private:
+ private:
         std::string nazwa;
         float cena;
         float waga;
-        float wagaZaKG;
-    public:    
-    void setElement(std::string nazwa, float cena, float waga){
+        float cenaZaKG;
+ public:  
+    Element(std::string nazwa, float cena, float waga){
         this->nazwa=nazwa;
         this->waga=waga;
         this->cena=cena;
-        wagaZaKG=cena/waga;
+        cenaZaKG=cena/waga;
     };
+       
     std::string getNazwa(){
             return nazwa;}
 
@@ -26,31 +26,32 @@ class Element
     float getWaga(){
         return waga;
     }
-    float getWagaZaKG(){
-        return wagaZaKG;
-    }
-    
+    float getCenaZaKG(){
+        return cenaZaKG;
+    }   
 };
 
 class Plecak{
     private:
         std::vector <Element> zawartoscPlecaka;
-        int nosnosc;
+        float pozostalaNosnosc;
+        float nosnosc;
     public:
         bool dodajElement(Element element){
-            if(nosnosc<=element.getWaga()){
+            if(pozostalaNosnosc>=element.getWaga()){
                 zawartoscPlecaka.push_back(element);
-                nosnosc=nosnosc-element.getWaga();
+                pozostalaNosnosc=pozostalaNosnosc-element.getWaga();
                 return true;} 
             else 
                 return false;
 
         }
     Plecak(int nosnosc){
-        this->nosnosc=nosnosc;
+        this->nosnosc = nosnosc;
+        pozostalaNosnosc = nosnosc;
     }    
-    int getNosnosc(){
-        return nosnosc;
+    int getPozostalaNosnosc(){
+        return pozostalaNosnosc;
     }
 
 };
@@ -58,10 +59,11 @@ class Plecak{
 //_____________________________________________________________
 int main(int argc, char const *argv[])
 {
-    std::vector <Element> naStole;
-    Element element;
+    std::vector <Element*> naStole;
+
     std::string nazwa;
     float cena,waga;
+
     //wstawianie elementów do spakowania
         do{
             std::cout<<"-----------"<<std::endl<<"podaj nazwe:";
@@ -71,11 +73,22 @@ int main(int argc, char const *argv[])
                 std::cin>>cena;
                 std::cout<<"podaj wage:";
                 std::cin>>waga;
-                element.setElement(nazwa, cena, waga);
-                naStole.push_back(element);
+                naStole.push_back(new Element(nazwa, cena, waga));
             };
         }while(nazwa!=".");
-    //Sortowanie po wadze za 1 kg
+
+    //Sortowanie po cenie za 1 kg
+    int ileDoSpakowania = naStole.size();
+    bool flaga;
+    do{
+        flaga = false;
+        for(int j=0; j<ileDoSpakowania-1; j++)
+            if(naStole[j]->getCenaZaKG() < naStole[j+1]->getCenaZaKG()){
+                std::swap(naStole[j], naStole[j+1]);
+                flaga = true;
+            }
+    } while (flaga);
+       
 
     //Wkladanie do plecaka
 

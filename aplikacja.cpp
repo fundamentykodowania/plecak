@@ -33,14 +33,14 @@ class Element
 
 class Plecak{
     private:
-        std::vector <Element> zawartoscPlecaka;
+        std::vector <Element*> zawartoscPlecaka;
         float pozostalaNosnosc;
         float nosnosc;
     public:
-        bool dodajElement(Element element){
-            if(pozostalaNosnosc>=element.getWaga()){
+        bool dodajElement(Element* element){
+            if(pozostalaNosnosc>=element->getWaga()){
                 zawartoscPlecaka.push_back(element);
-                pozostalaNosnosc=pozostalaNosnosc-element.getWaga();
+                pozostalaNosnosc=pozostalaNosnosc-element->getWaga();
                 return true;} 
             else 
                 return false;
@@ -53,7 +53,7 @@ class Plecak{
     int getPozostalaNosnosc(){
         return pozostalaNosnosc;
     }
-
+    
 };
 
 //_____________________________________________________________
@@ -89,8 +89,20 @@ int main(int argc, char const *argv[])
             }
     } while (flaga);
        
-
     //Wkladanie do plecaka
+
+    Plecak plecak(10.0f);
+
+    for(Element* n: naStole){
+        if(n->getWaga() < plecak.getPozostalaNosnosc())
+        plecak.dodajElement(n);
+    }
+
+
+
+    for(Element* n: naStole){
+       delete(n);
+    }
 
     return 0;
 };
